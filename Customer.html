@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Banking</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        h2 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        h3 {
+            margin-top: 40px;
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.3em;
+        }
+
+        h4 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        input[type=text], input[type=email], input[type=password], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        input[type=submit], button {
+            width: 100%;
+            background-color: #4285f4;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            font-size: 1em;
+        }
+
+        input[type=submit]:hover, button:hover {
+            background-color: #1a73e8;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .button-group button {
+            width: calc(50% - 5px);
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            font-size: 1em;
+            margin-bottom: 15px;
+        }
+
+        .button-group button:hover {
+            background-color: #45a049;
+        }
+
+        .payment-section, .transfer-form, .reminder-section, .bill-payment-section, .support-section {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-section h4, .transfer-form h4, .reminder-section h4, .bill-payment-section h4, .support-section h4 {
+            margin-bottom: 15px;
+        }
+
+        .payment-section p, .transfer-form p, .reminder-section p, .bill-payment-section p, .support-section p {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Online Banking</h1>
+    </div>
+
+    <div id="registerContainer" class="container show">
+        <h2>Welcome to Rhapsody Online Banking</h2>
+
+        <div class="section">
+            <h3>Registration</h3>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" required>
+                </div>
+                <input type="submit" value="Register">
+            </form>
+            <p>Already have an account? <a href="#" id="loginLink">Login</a></p>
+        </div>
+    </div>
+
+    <div id="servicesContainer" class="container hide">
+        <h2>Our Services</h2>
+
+        <div class="section">
+            <h3>Bank Account</h3>
+            <div class="button-group">
+                <button id="openAccount">Open Account</button>
+                <button id="closeAccount">Close Account</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Services</h3>
+            <div class="button-group">
+                <button id="applyCreditCard">Apply for a Credit Card</button>
+                <button id="applyLoan">Apply for a Loan</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Transactions</h3>
+            <div class="button-group">
+                <button id="viewTransactions">View Account Transactions</button>
+                <button id="viewCreditCardTransactions">View Credit Card Transactions</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Credit Card</h3>
+            <div class="button-group">
+                <button id="viewCreditCardPoints">View Credit Card Points</button>
+                <button id="payCreditCardBill">Pay Credit Card Bill</button>
+            </div>
+        </div>
+
+        <div class="section payment-section">
+            <h3>Pay Credit Card Bill</h3>
+            <form id="creditCardPaymentForm">
+                <div class="form-group">
+                    <label for="paymentAmount">Payment Amount</label>
+                    <input type="text" id="paymentAmount" required>
+                </div>
+                <div class="form-group">
+                    <label for="paymentMethod">Payment Method</label>
+                    <select id="paymentMethod" required>
+                        <option value="">Select Payment Method</option>
+                        <option value="credit-card">Credit Card</option>
+                        <option value="bank-transfer">Bank Transfer</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <input type="submit" value="Pay">
+            </form>
+            <div id="paymentHistory">
+                <h4>Payment History</h4>
+                <!-- Placeholder for payment history -->
+            </div>
+        </div>
+
+        <div class="section transfer-form">
+            <h3>Transfer Money</h3>
+            <form id="transferMoneyForm">
+                <div class="form-group">
+                    <label for="recipientAccount">Recipient Account</label>
+                    <input type="text" id="recipientAccount" required>
+                </div>
+                <div class="form-group">
+                    <label for="transferAmount">Transfer Amount</label>
+                    <input type="text" id="transferAmount" required>
+                </div>
+                <div class="form-group">
+                    <label for="transferType">Transfer Type</label>
+                    <select id="transferType" required>
+                        <option value="">Select Transfer Type</option>
+                        <option value="internal">Internal</option>
+                        <option value="domestic">Domestic</option>
+                        <option value="international">International</option>
+                    </select>
+                </div>
+                <input type="submit" value="Transfer">
+            </form>
+            <div id="transferConfirmation">
+                <h4>Transfer Confirmation</h4>
+                <!-- Placeholder for transfer confirmation -->
+            </div>
+        </div>
+
+        <div class="section reminder-section">
+            <h3>Bill Payment Reminders</h3>
+            <div class="button-group">
+                <button id="setBillReminders">Set Bill Reminders</button>
+                <button id="viewBillReminders">View Bill Reminders</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Loan/Credit Card Payment Reminders</h3>
+            <div class="button-group">
+                <button id="setPaymentReminders">Set Payment Reminders</button>
+                <button id="viewPaymentReminders">View Payment Reminders</button>
+            </div>
+        </div>
+
+        <div class="section bill-payment-section">
+            <h3>Pay Bills</h3>
+            <form id="billPaymentForm">
+                <div class="form-group">
+                    <label for="billType">Bill Type</label>
+                    <select id="billType" required>
+                        <option value="">Select Bill Type</option>
+                        <option value="gas">Gas</option>
+                        <option value="electricity">Electricity</option>
+                        <option value="water">Water</option>
+                        <option value="telephone">Telephone</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="billAmount">Bill Amount</label>
+                    <input type="text" id="billAmount" required>
+                </div>
+                <div class="form-group">
+                    <label for="billDetails">Bill Details</label>
+                    <textarea id="billDetails"></textarea>
+                </div>
+                <input type="submit" value="Pay">
+            </form>
+            <div id="billPaymentConfirmation">
+                <h4>Payment Confirmation</h4>
+                <!-- Placeholder for bill payment confirmation -->
+            </div>
+        </div>
+
+        <div class="section support-section">
+            <h3>Support/Help</h3>
+            <form id="technicalIssueForm">
+                <div class="form-group">
+                    <label for="issueDetails">Issue Details</label>
+                    <textarea id="issueDetails" required></textarea>
+                </div>
+                <input type="submit" value="Report Issue">
+                <p>Contact our customer support at 123-456-7890</p>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match.');
+                event.preventDefault();
+            }
+        });
+        document.getElementById('loginLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('registerContainer').classList.add('hide');
+            document.getElementById('servicesContainer').classList.remove('hide');
+        });
+        document.getElementById('openAccount').addEventListener('click', function() {
+            alert('Account opened. This is a placeholder action.');
+        });
+
+        document.getElementById('closeAccount').addEventListener('click', function() {
+            alert('Account closed. This is a placeholder action.');
+        });
+
+        document.getElementById('applyCreditCard').addEventListener('click', function() {
+            alert('Applied for a credit card. This is a placeholder action.');
+        });
+
+        document.getElementById('applyLoan').addEventListener('click', function() {
+            alert('Applied for a loan. This is a placeholder action.');
+        });
+
+        document.getElementById('viewTransactions').addEventListener('click', function() {
+            alert('Viewing transactions. This is a placeholder action.');
+        });
+
+        document.getElementById('viewCreditCardTransactions').addEventListener('click', function() {
+            alert('Viewing credit card transactions. This is a placeholder action.');
+        });
+
+        document.getElementById('viewCreditCardPoints').addEventListener('click', function() {
+            alert('Viewing credit card points. This is a placeholder action.');
+        });
+
+        document.getElementById('payCreditCardBill').addEventListener('click', function() {
+            alert('Paying credit card bill. This is a placeholder action.');
+        });
+
+        document.getElementById('transferMoney').addEventListener('click', function() {
+            alert('Transferring money. This is a placeholder action.');
+        });
+
+        document.getElementById('setPaymentReminder').addEventListener('click', function() {
+            alert('Setting payment reminder. This is a placeholder action.');
+        });
+
+        document.getElementById('receivePaymentReminder').addEventListener('click', function() {
+            alert('Receiving payment reminder. This is a placeholder action.');
+        });
+
+        document.getElementById('payBills').addEventListener('click', function() {
+            alert('Paying utility bills. This is a placeholder action.');
+        });
+
+        document.getElementById('reportIssues').addEventListener('click', function() {
+            alert('Reporting technical issues. This is a placeholder action.');
+        });
+    </script>
+</body>
+</html>
+
