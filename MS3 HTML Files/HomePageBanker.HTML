@@ -11,3 +11,25 @@
     <button onclick="location.href='withdraw.html'">Withdraw from Account</button>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Account</title>
+</head>
+<body>
+    <h1>Create Account</h1>
+    <form action="save_account.php" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="national_id">National ID:</label>
+        <input type="text" id="national_id" name="national_id" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="submit" value="Create Account">
+    </form>
+</body>
+</html>
+
