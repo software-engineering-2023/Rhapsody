@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rhapsody</title>
+    <style>
+        /* CSS styles here */
+        body {
+            background-color: #000000;
+            color: #00FF00; /* Light green */
+        }
+        
+        h1 {
+            text-align: center;
+            margin-top: 200px;
+            font-size: 48px;
+        }
+        
+        .button {
+            display: block;
+            width: 200px;
+            margin: 10px auto;
+            padding: 10px;
+            background-color: #00FF00; /* Light green */
+            color: #000000;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        .button:hover {
+            background-color: #32CD32; /* Darker green on hover */
+        }
+    </style>
+     <script>
+        function openUserManagementWindow() {
+            // Open a new window
+            var userManagementWindow = window.open('', '_blank');
+            
+            // Set background and text styles for the new window
+            userManagementWindow.document.body.style.backgroundColor = '#000000';
+            userManagementWindow.document.body.style.color = '#00FF00'; /* Light green */
+            
+            // Create the tables inside the new window
+            var clientTable = document.createElement('table');
+            var bankStaffTable = document.createElement('table');
+            
+            // Set table styles
+            clientTable.style.marginBottom = '20px';
+            
+            // Add content to tables (example rows)
+            clientTable.innerHTML = `
+                <thead>
+                    <tr>
+                        <th>Client ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>John Doe</td>
+                        <td>johndoe@example.com</td>
+                        <td><button onclick="deleteRow(this)">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Jane Smith</td>
+                        <td>janesmith@example.com</td>
+                        <td><button onclick="deleteRow(this)">Delete</button></td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            `;
+            
+            bankStaffTable.innerHTML = `
+                <thead>
+                    <tr>
+                        <th>Staff ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1001</td>
+                        <td>Mark Johnson</td>
+                        <td>markjohnson@example.com</td>
+                        <td><button onclick="deleteRow(this)">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td>1002</td>
+                        <td>Sarah Anderson</td>
+                        <td>sarahanderson@example.com</td>
+                        <td><button onclick="deleteRow(this)">Delete</button></td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            `;
+            
+            // Append tables to the new window's document
+            userManagementWindow.document.body.appendChild(clientTable);
+            userManagementWindow.document.body.appendChild(bankStaffTable);
+            
+            // Function to delete the row
+            function deleteRow(button) {
+                var row = button.parentNode.parentNode;
+                row.parentNode.removeChild(row);
+            }
+        }
+
+         function openBugReportsWindow() {   
+                // Open a new window
+                var bugReportsWindow = window.open('', '_blank');
+
+                // Set background and text styles for the new window
+                bugReportsWindow.document.body.style.backgroundColor = '#000000';
+                bugReportsWindow.document.body.style.color = '#00FF00'; /* Light green */
+
+                // Create the bug reports list
+                var bugReportsList = document.createElement('ul');
+
+                // Set list styles
+                bugReportsList.style.marginBottom = '20px';
+
+                // Add bug reports to the list (example items)
+                var bugReports = [
+                    { title: 'Bug report 1', url: 'bug_report_1.pdf' },
+                    { title: 'Bug report 2', url: 'bug_report_2.pdf' },
+                    { title: 'Bug report 3', url: 'bug_report_3.pdf' },
+                    // Add more bug reports as needed
+                ];
+
+        bugReports.forEach(function(report) {
+            var listItem = document.createElement('li');
+            var link = document.createElement('a');
+            link.textContent = report.title;
+            link.href = report.url;
+            listItem.appendChild(link);
+            bugReportsList.appendChild(listItem);
+        });
+
+        // Append the list to the new window's document
+        bugReportsWindow.document.body.appendChild(bugReportsList);
+        }
+        
+        
+        function startMaintenance() {
+  // Open a pop-up window
+  var maintenancePopup = window.open('', '_blank', 'width=300,height=200');
+
+  // Create the message content
+  var messageContent = document.createElement('div');
+  messageContent.style.textAlign = 'center';
+
+  // Create a label for the drop-down list
+  var label = document.createElement('label');
+  label.textContent = 'Select Maintenance Duration: ';
+  
+  // Create a drop-down list for the duration
+  var durationSelect = document.createElement('select');
+  
+  // Add options to the drop-down list
+  for (var i = 0.5; i <= 4; i += 0.5) {
+    var option = document.createElement('option');
+    option.value = i;
+    option.text = i + ' hours';
+    durationSelect.appendChild(option);
+  }
+  
+  // Create a button to confirm the selection
+  var confirmButton = document.createElement('button');
+  confirmButton.textContent = 'Confirm';
+  confirmButton.addEventListener('click', function() {
+    var selectedDuration = durationSelect.value;
+    alert('Maintenance will be performed for ' + selectedDuration + ' hours.');
+    maintenancePopup.close();
+  });
+
+  // Append the elements to the message content
+  messageContent.appendChild(label);
+  messageContent.appendChild(durationSelect);
+  messageContent.appendChild(document.createElement('br'));
+  messageContent.appendChild(confirmButton);
+
+  // Append the message content to the pop-up window's document
+  maintenancePopup.document.body.appendChild(messageContent);
+}
+
+
+function sendAnnouncements() {
+        var announcement = prompt("Enter your announcement:");
+        if (announcement !== null && announcement.trim() !== "") {
+            alert("Announcement: " + announcement);
+        } else {
+            alert("Invalid announcement. Please try again.");
+        }
+    }
+
+
+
+
+
+    function openClientTestBranch() {
+            // Open a new window for the client test branch
+            var clientTestWindow = window.open('', '_blank');
+            
+            // Set background and text styles for the new window
+            clientTestWindow.document.body.style.backgroundColor = '#000000';
+            clientTestWindow.document.body.style.color = '#00FF00'; /* Light green */
+            clientTestWindow.document.title = "Client Test Branch"; // Set the title of the new window
+            
+            // Add the heading to the new window
+            var heading = document.createElement('h1');
+            heading.innerText = "Client Test Branch";
+            heading.style.textAlign = 'center';
+            heading.style.marginTop = '200px';
+            heading.style.fontSize = '48px';
+            
+            clientTestWindow.document.body.appendChild(heading);
+        }
+
+
+
+        function openBankerTestBranchWindow() {
+            // Open a new window with the title "Banker at Test Branch"
+            var bankerTestBranchWindow = window.open('', '_blank');
+            
+
+              // Set background and text styles for the new window
+            bankerTestBranchWindow.document.body.style.backgroundColor = '#000000';
+            bankerTestBranchWindow.document.body.style.color = '#00FF00'; /* Light green */
+            bankerTestBranchWindow.document.title = "Banker Test Branch"; // Set the title of the new window
+            
+            // Add the heading to the new window
+            var heading = document.createElement('h1');
+            heading.innerText = "Banker Test Branch";
+            heading.style.textAlign = 'center';
+            heading.style.marginTop = '200px';
+            heading.style.fontSize = '48px';
+            
+            bankerTestBranchWindow.document.body.appendChild(heading);
+        }
+
+        function startSystemBackup() {
+            alert("System backup is underway. Please wait...");
+        }
+
+        function openAnalyticsWindow() {
+            // Open a new window
+            var analyticsWindow = window.open('', '_blank');
+            
+            // Set background and text styles for the new window
+            analyticsWindow.document.body.style.backgroundColor = '#000000';
+            analyticsWindow.document.body.style.color = '#00FF00'; /* Light green */
+            
+            // Create chart elements
+            var chart1 = document.createElement('div');
+            var chart2 = document.createElement('div');
+            
+            // Set chart styles
+            chart1.style.width = '400px';
+            chart1.style.height = '300px';
+            chart1.style.marginBottom = '20px';
+            
+            chart2.style.width = '400px';
+            chart2.style.height = '300px';
+            
+            // Generate random data for charts (example)
+            var data1 = [];
+            for (var i = 0; i < 10; i++) {
+                data1.push(Math.floor(Math.random() * 100));
+            }
+            
+            var data2 = [];
+            for (var j = 0; j < 10; j++) {
+                data2.push(Math.floor(Math.random() * 100));
+            }
+            
+            // Render the charts using a chart library (e.g., Chart.js)
+            renderChart(chart1, 'Chart 1', data1);
+            renderChart(chart2, 'Chart 2', data2);
+            
+            // Append charts to the new window's document
+            analyticsWindow.document.body.appendChild(chart1);
+            analyticsWindow.document.body.appendChild(chart2);
+            
+            // Function to render a chart using a chart library (example using Chart.js)
+            function renderChart(element, title, data) {
+                var canvas = document.createElement('canvas');
+                canvas.width = element.offsetWidth;
+                canvas.height = element.offsetHeight;
+                
+                element.appendChild(canvas);
+                
+                var ctx = canvas.getContext('2d');
+                
+                // Chart.js code to render the chart
+                var chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.map((_, index) => 'Label ' + (index + 1)),
+                        datasets: [{
+                            label: title,
+                            data: data,
+                            backgroundColor: '#00FF00', /* Light green */
+                            borderColor: '#000000',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <h1>Rhapsody</h1>
+    
+    <button class="button" onclick="openUserManagementWindow()">Manage Registered Users</button>
+    <button class="button" onclick= "openBugReportsWindow() "> Bug Reports</button>
+    <button class="button" onclick="startMaintenance()">Start Maintenance</button>
+    <button class="button" onclick="sendAnnouncements()">Send Announcements</button>
+    <button class="button" onclick="openClientTestBranch()">Open Client Test Branch</button>
+    <button class="button" onclick="openBankerTestBranchWindow()">Open Banker Test Branch</button>
+    <button class="button" onclick="startSystemBackup()">Start System Backup</button>
+    <button class="button" onclick="openAnalyticsWindow(), renderChart()">Analytics</button>
+</body>
+</html>
