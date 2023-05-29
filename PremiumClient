@@ -1,0 +1,105 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PremiumClient.aspx.cs" Inherits="Bank.WebForm1" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rhapsody</title>
+    <style>
+        /* CSS styles here */
+        body {
+            background-color: #000000;
+            color: #00FF00; /* Light green */
+        }
+        
+        h1 {
+            text-align: center;
+            margin-top: 200px;
+            font-size: 48px;
+        }
+        
+        .button {
+            display: block;
+            width: 200px;
+            margin: 10px auto;
+            padding: 10px;
+            background-color: #00FF00; /* Light green */
+            color: #000000;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        .button:hover {
+            background-color: #32CD32; /* Darker green on hover */
+        }
+    </style>
+     <script>
+        function requestSupport() {
+            // Open a new window
+            var supportRequestWindowWindow = window.open('', '_blank');
+            
+            // Set background and text styles for the new window
+            supportRequestWindowWindow.document.body.style.backgroundColor = '#000000';
+            supportRequestWindowWindow.document.body.style.color = '#00FF00'; /* Light green */
+            
+            supportRequestWindowWindow.document.write('<input type="text" placeholder="Enter your issue that you would like help with here"/>');
+            supportRequestWindowWindow.document.close();
+        }
+
+         function startChat() {   
+                //starts a chat with a financial advisor
+        }
+        
+        
+        function applyForCard() {
+  // Open a pop-up window
+            var cardApplication = window.open('', '_blank');
+
+            cardApplication.document.body.style.backgroundColor = '#000000';
+            cardApplication.document.body.style.color = '#00FF00'; /* Light green */
+  
+}
+
+
+function viewRewards() {
+        
+    }
+
+
+
+
+
+         function viewCreditScore() {
+            
+        }
+
+
+
+         function depositCheck() {
+            
+        }
+
+         function makeTransfer() {
+            
+        }
+
+        function viewRates() {
+            
+        }
+
+     </script>
+</head>
+<body>
+    
+    <button class="button" onclick="requestSupport()">Request Personalized Support</button>
+    <button class="button" onclick= "startChat() "> Chat with Financial Advisor</button>
+    <button class="button" onclick="applyForCard()">Apply for premium credit card</button>
+    <button class="button" onclick="viewRewards()">Cashback Rewards</button>
+    <button class="button" onclick="viewCreditScore()">View Credit Scores</button>
+    <button class="button" onclick="depositCheck()">Deposit Check</button>
+    <button class="button" onclick="makeTransfer()">Make international transfer</button>
+    <button class="button" onclick="viewRates(), renderChart()">View Foreign Currencies' Exchange Rate</button>
+</body>
+</html>
