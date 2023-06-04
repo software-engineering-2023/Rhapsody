@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title> Banker log in</title>
+    <title>Banker Log In</title>
     <style>
         body {
             position: relative;
@@ -10,15 +9,15 @@
             color: #00FF00; /* Light green */
         }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    position: relative;
-    z-index: 1;
-}
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
 
         .background-overlay {
             position: absolute;
@@ -39,85 +38,84 @@
             height: 200px;
         }
 
-.buttons {
-    margin-bottom: 20px;
-}
+        .buttons {
+            margin-bottom: 20px;
+        }
 
-.login-form,
-.banker-registration-form {
-    display: none;
-}
+        .login-form,
+        .admin-registration-form {
+            display: none;
+        }
 
-.error-message {
-    color: red;
-    margin-top: 10px;
-}
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
 
-<script >
-function showLoginForm() {
-    document .getElementById("loginForm").style.display = "block";
-    document .getElementById("BankerRegistrationForm").style.display = "none";
-}
+    <script>
+        function showLoginForm() {
+            document.getElementById("loginForm").style.display = "block";
+            document.getElementById("bankerRegistrationForm").style.display = "none";
+        }
 
-function showAdminRegistrationForm() {
-    document .getElementById("BankerRegistrationForm").style.display = "block";
-    document .getElementById("loginForm").style.display = "none";
-}
+        function showBankerRegistrationForm() {
+            document.getElementById("bankerRegistrationForm").style.display = "block";
+            document.getElementById("loginForm").style.display = "none";
+        }
 
-function validateAdminRegistrationForm() {
-    var password = document.getElementById("newPassword").value;
-    var confirmPassword = document.getElementById("confirmPassword").value;
-    if (password !== confirmPassword)
+        function validateBankerRegistrationForm() {
+            var password = document.getElementById("newPassword").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
 
-{
-    document .getElementById("errorMessage").style.display = "block";
-    return false;
-}
+            if (password !== confirmPassword) {
+                document.getElementById("errorMessage").style.display = "block";
+                return false;
+            }
 
-return true;
-}
+            return true;
+        }
 
-function redirectToBlankPage() {
-    // Open a new window or tab with a blank page window.open('Homepage.html');
-}
-
-</script >
-
+        function redirectToBlankPage() {
+            // Open a new window or tab with a blank page
+            window.open('Homepage.html');
+        }
+    </script>
 </head>
 <body>
-        <div class="container" >
-        <h1 > Rhapsody Banker</h1 >
-        <p > A Bank Worthy of Your Money </p >
+    <div class="container">
+        <h1>Rhapsody User: Banker</h1>
+        <p>A Bank Worthy of Your Money </p>
 
-        <div class="buttons" >
-        <button type="button" onclick="showLoginForm()" > Login</button >
-        <button type="button" onclick="showBankerRegistrationForm()" > Add New Banker</button >
-        </div >
+        <div class="buttons">
+            <button type="button" onclick="showLoginForm()">Login</button>
+            <button type="button" onclick="showBankerRegistrationForm()">Add New Banker</button>
+        </div>
 
-        <form id="loginForm" class="login-form" onsubmit="redirectToBlankPage()" >
-        <h2 > Login</h2 >
-        <label for="username" > Username:</label >
-        <input type="text" id="username" name="username" required >
-        <label for="password" > Password:</label >
-        <input type="password" id="password" name="password" required >
-        <button type="submit" > Submit</button >
-        </form >
+        <form id="loginForm" class="login-form" onsubmit="redirectToBlankPage()">
+            <h2>Login</h2>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Submit</button>
+        </form>
 
-        <form id="bankerRegistrationForm" class="banker-registration-form" onsubmit="return validateBankerRegistrationForm()" >
-        <h2 > Add New Banker</h2 >
-        <label for="newUsername" > Username:</label >
-        <input type="text" id="newUsername" name="newUsername" required >
-        <label for="newPassword" > Password:</label >
-        <input type="password" id="newPassword" name="newPassword" required >
-        <label for="confirmPassword" > Confirm Password:</label >
-        <input type="password" id="confirmPassword" name="confirmPassword" required >
-        <button type="submit" > Submit</button >
-        <p id="errorMessage" class="error-message" style="display: none;" > Passwords do not match.</p >
-        </form >
+        <form id="bankerRegistrationForm" class="banker-registration-form" onsubmit="return validateBankerRegistrationForm()">
+            <h2>Add New Banker</h2>
+            <label for="newUsername">Username:</label>
+            <input type="text" id="newUsername" name="newUsername" required>
+            <label for="newPassword">Password:</label>
+            <input type="password" id="newPassword" name="newPassword" required>
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <button type="submit">Submit</button>
+            <p id="errorMessage" class="error-message" style="display: none;">Passwords do not match.</p>
+        </form>
 
-        <img src="Logo.jpeg" alt="Logo" class="logo" >
-        </div >
+        <img src="Logo.jpeg" alt="Logo" class="logo">
+    </div>
 
-        <script src="script.js" > </script >
+    <script src="script.js"></script>
 </body>
 </html>
