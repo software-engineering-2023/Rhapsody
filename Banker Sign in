@@ -1,16 +1,123 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login Page</title>
+    <meta charset="utf-8" />
+    <title> Banker log in</title>
+    <style>
+        body {
+            position: relative;
+            background-color: #000000;
+            color: #00FF00; /* Light green */
+        }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+            z-index: -1;
+        }
+
+        .logo {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+        }
+
+.buttons {
+    margin-bottom: 20px;
+}
+
+.login-form,
+.banker-registration-form {
+    display: none;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+<script >
+function showLoginForm() {
+    document .getElementById("loginForm").style.display = "block";
+    document .getElementById("BankerRegistrationForm").style.display = "none";
+}
+
+function showAdminRegistrationForm() {
+    document .getElementById("BankerRegistrationForm").style.display = "block";
+    document .getElementById("loginForm").style.display = "none";
+}
+
+function validateAdminRegistrationForm() {
+    var password = document.getElementById("newPassword").value;
+    var confirmPassword = document.getElementById("confirmPassword").value;
+    if (password !== confirmPassword)
+
+{
+    document .getElementById("errorMessage").style.display = "block";
+    return false;
+}
+
+return true;
+}
+
+function redirectToBlankPage() {
+    // Open a new window or tab with a blank page window.open('Homepage.html');
+}
+
+</script >
+
 </head>
 <body>
-    <h1>Login Page</h1>
-    <form action="home.html">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
-        <input type="submit" value="Log In">
-    </form>
+        <div class="container" >
+        <h1 > Rhapsody Banker</h1 >
+        <p > A Bank Worthy of Your Money </p >
+
+        <div class="buttons" >
+        <button type="button" onclick="showLoginForm()" > Login</button >
+        <button type="button" onclick="showBankerRegistrationForm()" > Add New Banker</button >
+        </div >
+
+        <form id="loginForm" class="login-form" onsubmit="redirectToBlankPage()" >
+        <h2 > Login</h2 >
+        <label for="username" > Username:</label >
+        <input type="text" id="username" name="username" required >
+        <label for="password" > Password:</label >
+        <input type="password" id="password" name="password" required >
+        <button type="submit" > Submit</button >
+        </form >
+
+        <form id="bankerRegistrationForm" class="banker-registration-form" onsubmit="return validateBankerRegistrationForm()" >
+        <h2 > Add New Banker</h2 >
+        <label for="newUsername" > Username:</label >
+        <input type="text" id="newUsername" name="newUsername" required >
+        <label for="newPassword" > Password:</label >
+        <input type="password" id="newPassword" name="newPassword" required >
+        <label for="confirmPassword" > Confirm Password:</label >
+        <input type="password" id="confirmPassword" name="confirmPassword" required >
+        <button type="submit" > Submit</button >
+        <p id="errorMessage" class="error-message" style="display: none;" > Passwords do not match.</p >
+        </form >
+
+        <img src="Logo.jpeg" alt="Logo" class="logo" >
+        </div >
+
+        <script src="script.js" > </script >
 </body>
 </html>
