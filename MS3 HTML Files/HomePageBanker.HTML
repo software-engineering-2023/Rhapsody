@@ -1,35 +1,200 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home Page</title>
+    <title>Rhapsody</title>
+    <style>
+        /* CSS styles here */
+        body {
+            background-color: #000000;
+            color: #00FF00; /* Light green */
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 200px;
+            font-size: 48px;
+        }
+
+        .button {
+            display: block;
+            width: 200px;
+            margin: 10px auto;
+            padding: 10px;
+            background-color: #00FF00; /* Light green */
+            color: #000000;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+        }
+
+            .button:hover {
+                background-color: #32CD32; /* Darker green on hover */
+            }
+    </style>
+    <script>
+        function openClientsManagementWindow() {
+            var clientsWindow = window.open('', '_blank');
+
+            var table = document.createElement('table');
+            var headerRow = table.insertRow();
+            headerRow.innerHTML =
+                '<th>National ID Number</th><th>Name</th><th>Cash Amount</th><th>Action</th>';
+
+            // Create rows for each client
+            for (var i = 0; i < ClientsList.length; i++) {
+                var client = ClientsList[i];
+                var row = table.insertRow();
+
+                var idCell = row.insertCell();
+                idCell.textContent = client.idNumber;
+
+                var nameCell = row.insertCell();
+                nameCell.textContent = client.name;
+
+                var cashCell = row.insertCell();
+                cashCell.textContent = client.cashAmount.toFixed(2);
+
+                var actionCell = row.insertCell();
+                var deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.addEventListener('click', deleteRow);
+                actionCell.appendChild(deleteButton);
+
+                var withdrawButton = document.createElement('button');
+                withdrawButton.textContent = 'Withdraw';
+                withdrawButton.addEventListener('click', function () {
+                    var withdrawValue = prompt('Enter the withdrawal amount:');
+                    withdrawValue = parseFloat(withdrawValue);
+
+                    if (isNaN(withdrawValue)) {
+                        alert('Invalid input. Please enter a valid number.');
+                        return;
+                    }
+
+                    if (withdrawValue > client.cashAmount) {
+                        alert('Not enough cash for withdrawal.');
+                    } else {
+                        client.cashAmount -= withdrawValue;
+                        alert('Transaction done successfully!');
+                        cashCell.textContent = client.cashAmount.toFixed(2);
+                    }
+                });
+                actionCell.appendChild(withdrawButton);
+
+                var depositButton = document.createElement('button');
+                depositButton.textContent = 'Deposit';
+                depositButton.addEventListener('click', function () {
+                    var depositValue = prompt('Enter the deposit amount:');
+                    depositValue = parseFloat(depositValue);
+
+                    if (isNaN(depositValue)) {
+                        alert('Invalid input. Please enter a valid number.');
+                        return;
+                    }
+
+                    client.cashAmount += depositValue;
+                    alert('Transaction done successfully!');
+                    cashCell.textContent = client.cashAmount.toFixed(2);
+                });
+                actionCell.appendChild(depositButton);
+
+                var transferButton = document.createElement('button');
+                transferButton.textContent = 'Transfer money';
+                transferButton.addEventListener('click', function () {
+                    var transferWindow = window.open('', '_blank');
+                    transferWindow.document.write(
+                        '<h3>Transfer Money</h3>' +
+                        '<label>Name: </label><input type="text" id="transferName"><br>' +
+                        '<label>National ID Number: </label><input type="text" id="transferId"><br>' +
+                        '<label>Amount: </label><input type="text" id="transferAmount"><br>' +
+                        '<button id="transferButton">Transfer</button>'
+                    );
+
+                    var transferButton = transferWindow.document.getElementById('transferButton');
+                    transferButton.addEventListener('click', function () {
+                        var transferName = transferWindow.document.getElementById('transferName').value;
+                        var transferId = transferWindow.document.getElementById('transferId').value;
+                        var transferAmount = transferWindow.document.getElementById('transferAmount').value;
+                        transferAmount = parseFloat(transferAmount);
+
+                        var foundClient = false;
+                        for (var j = 0; j < ClientsList.length; j++) {
+                            var receiver = ClientsList[j];
+                            if (receiver.name === transferName && receiver.idNumber === transferId) {
+                                foundClient = true;
+                                if (transferAmount
+
+
+        function createNewClientAccount() {
+            var newClientWindow = window.open('', '_blank');
+
+            var form = document.createElement('form');
+
+            var idLabel = document.createElement('label');
+            idLabel.textContent = 'National ID Number: ';
+            var idInput = document.createElement('input');
+            idInput.type = 'text';
+            idInput.name = 'idNumber';
+            idLabel.appendChild(idInput);
+            form.appendChild(idLabel);
+            form.appendChild(document.createElement('br'));
+
+            var nameLabel = document.createElement('label');
+            nameLabel.textContent = 'Name: ';
+            var nameInput = document.createElement('input');
+            nameInput.type = 'text';
+            nameInput.name = 'name';
+            nameLabel.appendChild(nameInput);
+            form.appendChild(nameLabel);
+            form.appendChild(document.createElement('br'));
+
+            var passwordLabel = document.createElement('label');
+            passwordLabel.textContent = 'Password (minimum 8 characters): ';
+            var passwordInput = document.createElement('input');
+            passwordInput.type = 'password';
+            passwordInput.name = 'password';
+            passwordLabel.appendChild(passwordInput);
+            form.appendChild(passwordLabel);
+            form.appendChild(document.createElement('br'));
+
+            var signUpButton = document.createElement('button');
+            signUpButton.textContent = 'Sign up';
+            signUpButton.addEventListener('click', function () {
+                var id = idInput.value;
+                var name = nameInput.value;
+                var password = passwordInput.value;
+                var cashAmount = 0.0;
+
+                if (password.length >= 8) {
+                    var newClient = {
+                        idNumber: id,
+                        name: name,
+                        password: password,
+                        cashAmount: cashAmount,
+                    };
+
+                    // Store the new client in the ClientsList
+                    ClientsList.push(newClient);
+
+                    alert('Account created successfully!');
+                    newClientWindow.close();
+                } else {
+                    alert('Password must be at least 8 characters long.');
+                }
+            });
+
+            form.appendChild(signUpButton);
+            newClientWindow.document.body.appendChild(form);
+        }
+
+
+    </script>
 </head>
 <body>
-    <h1>Welcome to the Home Page</h1>
-    <button onclick="location.href='create_account.html'">Create Account for Client</button><br><br>
-    <button onclick="location.href='delete_account.html'">Delete Client's Account</button><br><br>
-    <button onclick="location.href='transfer_money.html'">Transfer Money</button><br><br>
-    <button onclick="location.href='withdraw.html'">Withdraw from Account</button>
+    <h1>Rhapsody</h1>
+    <button class="button" onclick="openClientsManagementWindow()">Manage Registered Clients</button>
+    <button class="button" onclick="createNewClientAccount() ">Create new client account</button>
 </body>
 </html>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Create Account</title>
-</head>
-<body>
-    <h1>Create Account</h1>
-    <form action="save_account.php" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
-        <label for="national_id">National ID:</label>
-        <input type="text" id="national_id" name="national_id" required><br><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
-        <input type="submit" value="Create Account">
-    </form>
-</body>
-</html>
-
